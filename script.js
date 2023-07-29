@@ -1,5 +1,7 @@
-$(document).ready(function(){
-        $("button").click(function(){
-            $("p").hide();
-        });
-});
+$("p").hide("fast");
+$("p").toggle("slow",function () {
+    $(this).addClass("blue");  
+})
+$("button").on("click",function(){
+    $("p").stop();
+})
