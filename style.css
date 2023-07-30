@@ -1,4 +1,4 @@
-th, table{
+th, table, td{
     border: 1px solid black;
 }
 th,tr{
@@ -7,7 +7,4 @@ th,tr{
 }
 table{
     margin-top: 20px;
-}
-.blue{
-    background-color: red;
 }
