@@ -1,10 +1,11 @@
 $(document).ready(function(){
     let editIndex = -1;
+    let disableSorting = false;
     $("#submit-btn").click(function(textval){
         textval = $("#task").val();
         if(textval.trim() != ""){
             if(editIndex === -1){
-                $("#tasks").append(`<li class = "task list-group-item"> <span class="task-number"></span> <p>`+ textval +` </p><i class="bx bxs-edit bx-sm"></i> <i class="bx bxs-trash bx-sm"></i></li>`);
+                $("#tasks").append(`<li class = "task border-bottom bg-transparent"> <span class="task-number"></span> <p class="fs-2">`+ textval +` </p><i class="bx bxs-edit bx-md"></i> <i class="bx bxs-trash bx-md"></i><i class="bx bx-check bx-md"></i></li>`);
 
             }
             else{
@@ -18,6 +19,11 @@ $(document).ready(function(){
     })
     $("#tasks").on("click", ".bxs-trash" , function(){
         $(this).parent().remove();
+        updateTaskNumbers();
+    })
+    $("#tasks").on("click",".bx-check", function(){
+        $(this).parent().find("p").toggleClass("checked");
+        $(this).parent().find(".bxs-edit").toggle();
     })
     function setDefault(){
         $("#task").val("");
@@ -25,23 +31,25 @@ $(document).ready(function(){
         $("#submit-btn").removeClass("edit")
         $(".cancel-btn").addClass("d-none");
         $(".bx").show();
-        $("#tasks li").eq(editIndex).removeClass("active")
+        $("#tasks li").eq(editIndex).removeClass("edit-color")
+        editIndex = -1;
+        $("#tasks").sortable("enable");
     }
     $("#tasks").on("click" , ".bxs-edit", function(){
         editIndex = $(this).parent().index();
-        $(this).parent().addClass("active")
+        $(this).parent().addClass("edit-color")
         $("#task").val($(this).prev("p").html());
         $("#submit-btn").text("Edit");
         $("#submit-btn").addClass("edit")
         $(".cancel-btn").removeClass("d-none");
         $(".bx").hide();
+        $("#tasks").sortable("disable");
     })
     $(".cancel-btn").on("click", function(){
         setDefault();
 
     })
     $("#tasks").sortable({
-        handle: "p",
         update: function () {
             updateTaskNumbers();
         }

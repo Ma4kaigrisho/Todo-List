@@ -1,11 +1,15 @@
 body{
-    background-color: gainsboro;
+    background-image: url("background2.jpg");
     text-align: center;
-    
+    font-family: 'Edu SA Beginner', cursive;
+    font-weight: 50px;
 }
 .list{
-    background-color: #1A1110;
-    color: white;
+    /* background-color: #f8ea5a; */
+    background-image: url("paper.jpg");
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+
 }
 h1{
     text-align: center;
@@ -13,4 +17,23 @@ h1{
 li{
     margin-top: 15px;
     margin-bottom: 15px;
+}
+ul{
+    list-style-type: none;
+}
+input, .edit{
+    margin-right: 20px;
+}
+.edit-color{
+    color: orange;
+}
+img{
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: auto;
+}
+.checked{
+    text-decoration: line-through;
+    color: green;
 }
