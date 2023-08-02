@@ -4,7 +4,7 @@ $(document).ready(function(){
         textval = $("#task").val();
         if(textval.trim() != ""){
             if(editIndex === -1){
-                $("#tasks").append(`<li class = "task list-group-item"> <p>`+ textval +` </p><i class="bx bxs-edit bx-sm"></i> <i class="bx bxs-trash bx-sm"></i></li>`);
+                $("#tasks").append(`<li class = "task list-group-item"> <span class="task-number"></span> <p>`+ textval +` </p><i class="bx bxs-edit bx-sm"></i> <i class="bx bxs-trash bx-sm"></i></li>`);
 
             }
             else{
@@ -40,5 +40,18 @@ $(document).ready(function(){
         setDefault();
 
     })
+    $("#tasks").sortable({
+        handle: "p",
+        update: function () {
+            updateTaskNumbers();
+        }
+      });
+    
+      // Function to update numeric order
+      function updateTaskNumbers() {
+        $("#tasks li").each(function (index) {
+            $(this).find(".task-number").text(index + 1);
+        });
+      }
     
 })
